@@ -1,5 +1,7 @@
 #include "Scanner.h"
 
+#include <cctype>
+
 std::vector<Token> Scanner::ScanTokens()
 {
 	std::vector<Token> tokens;
@@ -74,14 +76,14 @@ std::vector<Token> Scanner::ScanTokens()
 			default:
 				if (std::isdigit(c))
 					NumberToken();
-				else if (std::isalpha)
+				else if (std::isalpha(c))
 					IdentifierToken();
 				else
 					Lox::ReportError(m_Line, std::string("Unexpected symbol: " + c).c_str());
 				break;
 		}
 	}
-	for (int i = 0; i < m_Tokens.size(); i++) {
+	for (size_t i = 0; i < m_Tokens.size(); i++) {
 		LX_INFO("%s %s\n", m_Tokens[i].ToString().c_str(), m_Tokens[i].m_Lexeme.c_str());
 	}
 	return m_Tokens;
